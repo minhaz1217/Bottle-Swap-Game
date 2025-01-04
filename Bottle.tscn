@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://5pdex54npesc"]
+[gd_scene load_steps=3 format=3 uid="uid://5pdex54npesc"]
 
 [ext_resource type="Script" path="res://Bottle.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cc3bkak2diqpo" path="res://assets/potions/bottle2_03.png" id="6"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpvfv"]
-size = Vector2(128, 240)
 
 [node name="Bottle" type="Area2D"]
 script = ExtResource("1")
@@ -12,14 +9,13 @@ script = ExtResource("1")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_cpvfv")
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-20, -116, -8, -120, 18, -117, 18, -105, 29, -102, 31, -97, 25, -89, 29, -80, 32, -66, 23, -40, 24, -20, 37, -4, 43, -5, 47, 3, 55, 18, 61, 38, 61, 45, 64, 69, 58, 84, 44, 98, 42, 108, 34, 117, 11, 120, -22, 120, -37, 114, -43, 107, -44, 98, -59, 84, -64, 62, -62, 47, -60, 42, -57, 21, -45, 4, -45, -4, -37, -7, -30, -12, -22, -33, -27, -50, -31, -69, -25, -87, -32, -94, -30, -101, -19, -105, -19, -105)
 
 [node name="BottleStaticBody" type="StaticBody2D" parent="." groups=["bottle"]]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="BottleStaticBody"]
-show_behind_parent = true
-shape = SubResource("RectangleShape2D_cpvfv")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottleStaticBody"]
+polygon = PackedVector2Array(-20, -116, -8, -120, 18, -117, 18, -105, 29, -102, 31, -97, 25, -89, 29, -80, 32, -66, 23, -40, 24, -20, 37, -4, 43, -5, 47, 3, 55, 18, 61, 38, 61, 45, 64, 69, 58, 84, 44, 98, 42, 108, 34, 117, 11, 120, -22, 120, -37, 114, -43, 107, -44, 98, -59, 84, -64, 62, -62, 47, -60, 42, -57, 21, -45, 4, -45, -4, -37, -7, -30, -12, -22, -33, -27, -50, -31, -69, -25, -87, -32, -94, -30, -101, -19, -105, -19, -105)
 
 [connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_area_2d_body_exited"]

@@ -10,7 +10,7 @@ glow_enabled = true
 glow_intensity = 5.1
 glow_bloom = 0.35
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node"]
 script = ExtResource("1_rylkd")
 
 [node name="Label" type="Label" parent="."]
@@ -30,12 +30,15 @@ environment = SubResource("Environment_cu8t4")
 [node name="Node" type="Node2D" parent="."]
 position = Vector2(100, 160)
 metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Bottle" parent="Node" instance=ExtResource("6_5in47")]
 bottle_texture = ExtResource("4_2i378")
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(300, 160)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Bottle2" parent="Node2D" instance=ExtResource("6_5in47")]
 bottle_texture = ExtResource("4_21p1g")
