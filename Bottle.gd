@@ -8,6 +8,7 @@ var is_inside_dropable = false
 var body_ref
 var offset: Vector2
 var initial_pos : Vector2
+var starting_position: Vector2
 
 func _ready():
 	var sprite : Sprite2D  = get_node("Sprite2D")
@@ -28,10 +29,10 @@ func _process(delta):
 			global.is_dragging = false
 			var tween = get_tree().create_tween()
 			if(is_inside_dropable):
-				print("Moving to body ",body_ref.global_position, body_ref.position)
+				print(self.name, body_ref.name, initial_pos, body_ref.global_position)
 				tween.tween_property(self, "global_position", body_ref.global_position, .2).set_ease(Tween.EASE_OUT)
+				tween.tween_property(body_ref.get_parent(), "global_position", initial_pos, .2).set_ease(Tween.EASE_OUT)
 			else:
-				print("Moving to ", initial_pos)
 				tween.tween_property(self, "global_position", initial_pos, .2).set_ease(Tween.EASE_OUT)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -39,7 +40,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if(body.is_in_group("bottle") && body != staticBody):
 		is_inside_dropable = true
 		body_ref = body
-		#print("Entered", body.name,body.global_position, body.position, global_position)
+		print("Entered ", body.get_parent().name)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
