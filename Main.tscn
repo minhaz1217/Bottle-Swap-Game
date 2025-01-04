@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dul6dfbbphdm7"]
+[gd_scene load_steps=6 format=3 uid="uid://dul6dfbbphdm7"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_rylkd"]
-[ext_resource type="Texture2D" uid="uid://cafyh58rec4th" path="res://assets/potions/bottle2_01.png" id="2_w6pne"]
-[ext_resource type="Texture2D" uid="uid://cc3bkak2diqpo" path="res://assets/potions/bottle2_03.png" id="3_my1ke"]
 [ext_resource type="Texture2D" uid="uid://dhf5t0uia7hg3" path="res://assets/potions/bottle2_04.png" id="4_2i378"]
-[ext_resource type="Texture2D" uid="uid://vmjtrhnksqw4" path="res://assets/potions/bottle2_05.png" id="5_qhwfe"]
+[ext_resource type="Texture2D" uid="uid://dmeosru85miv3" path="res://assets/potions/bottle2_07.png" id="4_21p1g"]
+[ext_resource type="PackedScene" uid="uid://5pdex54npesc" path="res://Bottle.tscn" id="6_5in47"]
 
 [sub_resource type="Environment" id="Environment_cu8t4"]
 glow_enabled = true
@@ -12,70 +11,13 @@ glow_intensity = 5.1
 glow_bloom = 0.35
 
 [node name="Main" type="Node2D"]
-position = Vector2(0, 176)
 script = ExtResource("1_rylkd")
-
-[node name="bottle1" type="Sprite2D" parent="."]
-position = Vector2(72, 120)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_w6pne")
-metadata/_edit_group_ = true
-
-[node name="Button" type="Button" parent="bottle1"]
-offset_left = -64.0
-offset_top = -120.0
-offset_right = 64.0
-offset_bottom = 120.0
-flat = true
-metadata/_edit_use_anchors_ = true
-
-[node name="bottle2" type="Sprite2D" parent="."]
-position = Vector2(184, 120)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("3_my1ke")
-metadata/_edit_group_ = true
-
-[node name="Button" type="Button" parent="bottle2"]
-offset_left = -64.0
-offset_top = -120.0
-offset_right = 64.0
-offset_bottom = 120.0
-flat = true
-metadata/_edit_use_anchors_ = true
-
-[node name="bottle3" type="Sprite2D" parent="."]
-position = Vector2(296, 120)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("4_2i378")
-metadata/_edit_group_ = true
-
-[node name="Button" type="Button" parent="bottle3"]
-offset_left = -64.0
-offset_top = -120.0
-offset_right = 64.0
-offset_bottom = 120.0
-flat = true
-metadata/_edit_use_anchors_ = true
-
-[node name="bottle4" type="Sprite2D" parent="."]
-position = Vector2(408, 120)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("5_qhwfe")
-metadata/_edit_group_ = true
-
-[node name="Button" type="Button" parent="bottle4"]
-offset_left = -64.0
-offset_top = -120.0
-offset_right = 64.0
-offset_bottom = 120.0
-flat = true
-metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = 32.0
-offset_top = 232.0
+offset_top = 520.0
 offset_right = 448.0
-offset_bottom = 272.0
+offset_bottom = 560.0
 theme_override_font_sizes/font_size = 25
 text = "2 bottles are in place"
 horizontal_alignment = 1
@@ -85,7 +27,15 @@ autowrap_mode = 2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cu8t4")
 
-[connection signal="pressed" from="bottle1/Button" to="." method="pressed" binds= [1]]
-[connection signal="pressed" from="bottle2/Button" to="." method="pressed" binds= [2]]
-[connection signal="pressed" from="bottle3/Button" to="." method="pressed" binds= [3]]
-[connection signal="pressed" from="bottle4/Button" to="." method="pressed" binds= [4]]
+[node name="Node" type="Node2D" parent="."]
+position = Vector2(100, 160)
+metadata/_edit_lock_ = true
+
+[node name="Bottle" parent="Node" instance=ExtResource("6_5in47")]
+bottle_texture = ExtResource("4_2i378")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(300, 160)
+
+[node name="Bottle2" parent="Node2D" instance=ExtResource("6_5in47")]
+bottle_texture = ExtResource("4_21p1g")
