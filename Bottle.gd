@@ -9,6 +9,7 @@ var body_ref
 var offset: Vector2
 var initial_pos : Vector2
 var starting_position: Vector2
+var tween : Tween
 
 func _ready():
 	var sprite : Sprite2D  = get_node("Sprite2D")
@@ -17,7 +18,7 @@ func _ready():
 	pass
 
 func _process(delta):
-	if(dragable):
+	if(dragable && (tween == null || !tween.is_running())):
 		if(Input.is_action_just_pressed("click")):
 			initial_pos = global_position
 			offset = get_global_mouse_position() - self.position
@@ -27,7 +28,8 @@ func _process(delta):
 			position = get_global_mouse_position() - offset
 		elif(Input.is_action_just_released("click")):
 			global.is_dragging = false
-			var tween = get_tree().create_tween()
+			
+			tween = get_tree().create_tween()
 			if(is_inside_dropable):
 				print(self.name, body_ref.name, initial_pos, body_ref.global_position)
 				tween.tween_property(self, "global_position", body_ref.global_position, .2).set_ease(Tween.EASE_OUT)
