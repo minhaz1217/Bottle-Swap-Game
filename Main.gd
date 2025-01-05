@@ -10,6 +10,7 @@ var bottleImages = [
 	preload("res://assets/potions/bottle2_06.png"),
 	preload("res://assets/potions/bottle2_07.png"),
 ];
+@export var bottleScene : PackedScene
 
 var correctOrder = [];
 var currentOrder = [];
@@ -17,9 +18,23 @@ var firstPressNumber:int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+
+	add_bottle(100,160, bottleImages[3])
+	add_bottle(300,160, bottleImages[4])
+	add_bottle(500,160, bottleImages[6])
 	#placeImages()
 	#checkMatches()
 	pass # Replace with function body.
+
+func add_bottle(x: int, y: int, texture: Texture):
+	var node: Node2D = Node2D.new()
+	var bottle = bottleScene.instantiate()
+	bottle.bottle_texture = texture
+	node.position.x = x
+	node.position.y = y	
+	node.add_child(bottle)	
+	add_child(node)
+	
 
 func placeImages():	
 	generateCurrentAndCorrectOrder(4)
@@ -41,6 +56,7 @@ func generateCurrentAndCorrectOrder(totalSize: int):
 	currentOrder.shuffle()
 	
 func placeCurrentOrderImages():
+	
 	print(currentOrder)
 	get_node("bottle1").texture = bottleImages[ currentOrder[0] ]
 	get_node("bottle2").texture = bottleImages[ currentOrder[1] ]
